@@ -1,0 +1,61 @@
+{
+    "extends": [
+        "assignar-react"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "no-implicit-globals": "off",
+        "typescript/type-annotation-spacing": [
+            "error",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "react/prop-types": "off",
+        "react/no-array-index-key": "warning",
+        "react/jsx-no-target-blank": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "react/jsx-wrap-multilines": "off",
+        "import/no-nodejs-modules": "off",
+
+        "no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "after-used",
+                "ignoreRestSiblings": true
+            }
+        ],
+        "typescript/no-unused-vars": "error"
+    },
+    "settings": {
+        "import/resolver": {
+            "typescript": {}
+        },
+        "react": {
+            "version": "16.6.3"
+        }
+    },
+    "overrides": [
+        {
+            "files": "typings/**/*",
+            "rules": {
+                "strict": "off",
+                "no-unused-vars": "off"
+            }
+        },
+        {
+            "files": "scripts/**/*",
+            "rules": {
+                "import/no-nodejs-modules": "off"
+            }
+        }
+    ]
+}

@@ -7,9 +7,37 @@
         {
             "type": "chrome",
             "request": "launch",
+            "name": "Launch Chrome Canary against localhost",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}",
+            "smartStep": true,
+            "port": 9222,
+            "runtimeArgs": [
+                "--start-fullscreen"
+            ],
+            "runtimeExecutable": "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary",
+            "userDataDir": "/tmp/TMP_CHROME_CANARY_DEBUG_USR"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
+            "smartStep": true,
+            "port": 9222,
+            "runtimeArgs": [
+                "--start-fullscreen"
+            ]
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach to current chrome in debug mode",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}",
+            "smartStep": true,
+            "port": 9222
         }
     ]
 }

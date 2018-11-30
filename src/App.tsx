@@ -1,5 +1,12 @@
 import * as React from 'react'
 
-const App = React.memo(() => <div>APP</div>)
+import Content from '~/components/Content'
+import Theme from '~/Theme'
+
+const App : React.FunctionComponent = () => (
+    <Theme>
+        <Content />
+    </Theme>
+)
 
 export default App

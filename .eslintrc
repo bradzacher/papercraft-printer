@@ -23,17 +23,7 @@
         "react/jsx-no-target-blank": "off",
         "react/jsx-one-expression-per-line": "off",
         "react/jsx-wrap-multilines": "off",
-        "import/no-nodejs-modules": "off",
-
-        "no-unused-vars": [
-            "error",
-            {
-                "vars": "all",
-                "args": "after-used",
-                "ignoreRestSiblings": true
-            }
-        ],
-        "typescript/no-unused-vars": "error"
+        "import/no-nodejs-modules": "off"
     },
     "settings": {
         "import/resolver": {
@@ -54,7 +44,28 @@
         {
             "files": "scripts/**/*",
             "rules": {
-                "import/no-nodejs-modules": "off"
+                "import/no-nodejs-modules": "off",
+                "no-unused-vars": [
+                    "error",
+                    {
+                        "vars": "all",
+                        "args": "after-used",
+                        "ignoreRestSiblings": true
+                    }
+                ]
+            }
+        },
+        {
+            "files": "config/**/*",
+            "rules": {
+                "no-unused-vars": [
+                    "error",
+                    {
+                        "vars": "all",
+                        "args": "after-used",
+                        "ignoreRestSiblings": true
+                    }
+                ]
             }
         }
     ]

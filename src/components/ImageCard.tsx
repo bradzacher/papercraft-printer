@@ -6,10 +6,6 @@ import { Image, ImagesStore } from '~/stores/Images'
 import usePrintMediaQuery from '~/lib/usePrintMediaQuery'
 import ImageOptions from '~/components/ImageOptions'
 
-const MAX_SIZE = {
-    height: 42,
-    width: 15,
-}
 const STAND_HEIGHT = 6
 
 const styles = createStyles(() => ({
@@ -18,14 +14,12 @@ const styles = createStyles(() => ({
         boxShadow: '0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)',
         display: 'flex',
         flexDirection: 'column' as 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'stretch',
         margin: '0.25rem',
         padding: '1rem',
     },
     fullImage: {
-        maxHeight: `${MAX_SIZE.height}rem`,
         paddingTop: '1rem',
-        width: `${MAX_SIZE.width}rem`,
     },
 
     doubledImage: {
@@ -33,13 +27,11 @@ const styles = createStyles(() => ({
         display: 'flex',
         flexDirection: 'column' as 'column',
         justifyContent: 'flex-start',
-        maxHeight: `${MAX_SIZE.height}rem`,
         paddingTop: '1rem',
-        width: `${MAX_SIZE.width}rem`,
     },
     singleImage: {
         border: '1px solid black',
-        maxHeight: `${(MAX_SIZE.height - STAND_HEIGHT) / 2}rem`,
+        flexGrow: 1,
         width: '100%',
     },
     singleImageTop: {
@@ -49,6 +41,8 @@ const styles = createStyles(() => ({
     },
     singleImageStand: {
         border: '1px solid black',
+        flexGrow: 0,
+        flexShrink: 0,
         height: `${STAND_HEIGHT}rem`,
         width: '100%',
     },

@@ -26,8 +26,8 @@ interface Props {
     className ?: string
 }
 
-type ImageSelector = React.FunctionComponent<Props & WithSheet<typeof styles>>
-const ImageSelector : ImageSelector = ({ classes, className, addImages }) => {
+type TImageSelector = React.FunctionComponent<Props & WithSheet<typeof styles>>
+const ImageSelector : TImageSelector = ({ classes, className, addImages }) => {
     const onFileUpload = async (files : File[]) => {
         if (files.length === 0) {
             return

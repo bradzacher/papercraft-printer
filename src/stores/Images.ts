@@ -75,4 +75,4 @@ const useImagesStore = () : ImagesStore => {
 }
 
 export default useImagesStore
-export { CreatureSize, Image, ImagesStore }
+export { CreatureSize, Image, ImagesStore, RealUnit }

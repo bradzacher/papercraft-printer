@@ -76,6 +76,12 @@ const globalStyles = {
         a: {
             color: theme.palette.secondary,
         },
+        // remove the url/title/page from the print vie
+        // https://stackoverflow.com/a/2780518/3736051
+        '@page': {
+            size: 'auto',
+            margin: '5mm',
+        },
     },
 }
 const ThemeWithGlobalStyles = injectStylesheet(globalStyles)(Theme)

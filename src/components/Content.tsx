@@ -35,7 +35,7 @@ const Content : React.FunctionComponent<WithSheet<typeof styles>> = ({ classes }
 
     return (
         <div className={classes.container}>
-            <ImageSelector addImage={store.addImage} />
+            <ImageSelector addImages={store.addImages} />
             {Object.keys(CreatureSize).map((key) => {
                 const imagesFiltered = store.images.filter(i => i.creatureSize === key)
 

@@ -25,7 +25,7 @@ type ImagesState = ReadonlyArray<Readonly<Image>>
 
 interface ImagesStore {
     images : ImagesState
-    addImage : (dataUrl : string) => void
+    addImages : (dataUrls : string[]) => void
     removeImage : (image : Image) => void
     setProperty : <T extends keyof Image>(image : Image, key : T, value : Image[T]) => void
 }
@@ -47,11 +47,12 @@ const useImagesStore = () : ImagesStore => {
 
     return {
         images,
-        addImage: (dataUrl : string) : void => {
-            if (images.findIndex(i => i.dataUrl === dataUrl) === -1) {
+        addImages: (dataUrls : string[]) : void => {
+            const newImages = dataUrls.filter(dataUrl => !images.find(i => i.dataUrl === dataUrl))
+            if (newImages.length > 0) {
                 setImages([
                     ...images,
-                    {
+                    ...newImages.map(dataUrl => ({
                         dataUrl,
                         count: 1,
                         isSingle: false,
@@ -59,7 +60,7 @@ const useImagesStore = () : ImagesStore => {
                         realWidth: 23,
                         realHeight: 66.5,
                         realUnits: RealUnit.mm,
-                    },
+                    })),
                 ])
             }
         },

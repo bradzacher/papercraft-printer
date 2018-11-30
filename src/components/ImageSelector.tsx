@@ -22,22 +22,32 @@ const styles = createStyles(theme => ({
 }))
 
 interface Props {
-    addImage : (image : string) => void
+    addImages : (image : string[]) => void
     className ?: string
 }
 
 type ImageSelector = React.FunctionComponent<Props & WithSheet<typeof styles>>
-const ImageSelector : ImageSelector = ({ classes, className, addImage }) => {
-    const onFileUpload = (files : File[]) => {
+const ImageSelector : ImageSelector = ({ classes, className, addImages }) => {
+    const onFileUpload = async (files : File[]) => {
         if (files.length === 0) {
             return
         }
 
-        const reader = new FileReader()
-        reader.addEventListener('load', () => {
-            addImage(reader.result as string)
-        })
-        reader.readAsDataURL(files[0])
+        const dataUrls = await Promise.all(
+            files.map(
+                file =>
+                    new Promise<string>((resolve) => {
+                        const reader = new FileReader()
+                        reader.addEventListener('load', () => {
+                            resolve(reader.result as string)
+                        })
+
+                        reader.readAsDataURL(file)
+                    }),
+            ),
+        )
+
+        addImages(dataUrls)
     }
 
     return (
@@ -45,7 +55,7 @@ const ImageSelector : ImageSelector = ({ classes, className, addImage }) => {
             accept='image/*'
             className={classnames(className, classes.dropzone)}
             onDropAccepted={onFileUpload}
-            multiple={false}
+            multiple
         >
             Click to add images (or drop them here)...
         </Dropzone>

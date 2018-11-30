@@ -6,9 +6,7 @@ import { Image, ImagesStore } from '~/stores/Images'
 import usePrintMediaQuery from '~/lib/usePrintMediaQuery'
 import ImageOptions from '~/components/ImageOptions'
 
-const STAND_HEIGHT = 6
-
-const styles = createStyles(() => ({
+const styles = createStyles(theme => ({
     container: {
         alignItems: 'center',
         boxShadow: '0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)',
@@ -30,7 +28,7 @@ const styles = createStyles(() => ({
         paddingTop: '1rem',
     },
     singleImage: {
-        border: '1px solid black',
+        border: `1px solid ${theme.palette.grey}`,
         flexGrow: 1,
         width: '100%',
     },
@@ -40,10 +38,11 @@ const styles = createStyles(() => ({
         borderTop: 'none',
     },
     singleImageStand: {
-        border: '1px solid black',
+        backgroundColor: theme.palette.white,
+        border: `1px solid ${theme.palette.grey}`,
         flexGrow: 0,
         flexShrink: 0,
-        height: `${STAND_HEIGHT}rem`,
+        height: '5rem',
         width: '100%',
     },
     singleImageStandBottom: {

@@ -57,6 +57,9 @@ function createStyles<TClasses extends string>(styles : StyleCreator<TClasses, t
 
 const globalStyles = {
     '@global': {
+        'html, body': {
+            backgroundColor: theme.palette.white,
+        },
         'html, body, #root': {
             height: '100%',
             width: '100%',

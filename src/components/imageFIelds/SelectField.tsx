@@ -23,7 +23,7 @@ const SelectField : React.FunctionComponent<Props> = ({ image, enumObj, label, p
             <select value={image[property] as string} onChange={onChange}>
                 {Object.keys(enumObj).map(key => (
                     <option value={key} key={key}>
-                        {key}
+                        {enumObj[key]}
                     </option>
                 ))}
             </select>

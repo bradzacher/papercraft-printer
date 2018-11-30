@@ -9,7 +9,7 @@ enum CreatureSize {
     Gargantuan = 'Gargantuan',
 }
 enum RealUnit {
-    inch = 'inch',
+    inch = 'in',
     mm = 'mm',
 }
 interface Image {
@@ -33,7 +33,7 @@ interface ImagesStore {
 const useImagesStore = () : ImagesStore => {
     const [images, setImages] = React.useState<ImagesState>([])
 
-    function set<T extends keyof Image>(image : Image, key : T, value : Image[T]) {
+    function setProperty<T extends keyof Image>(image : Image, key : T, value : Image[T]) {
         const idx = images.indexOf(image)
         if (idx !== -1) {
             const newImages = [...images]
@@ -57,9 +57,9 @@ const useImagesStore = () : ImagesStore => {
                         count: 1,
                         isSingle: false,
                         creatureSize: CreatureSize.Medium,
-                        realWidth: 23,
-                        realHeight: 66.5,
-                        realUnits: RealUnit.mm,
+                        realWidth: 1,
+                        realHeight: 3,
+                        realUnits: RealUnit.inch,
                     })),
                 ])
             }
@@ -70,7 +70,7 @@ const useImagesStore = () : ImagesStore => {
                 setImages(images.filter((_, i) => i !== idx))
             }
         },
-        setProperty: set,
+        setProperty,
     }
 }
 

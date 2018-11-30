@@ -97,7 +97,7 @@ const ImageCard : React.FunctionComponent<Props & WithSheet<typeof styles>> = ({
 
             if (image.isSingle) {
                 return (
-                    <div className={classes.doubledImage} style={printSizing}>
+                    <div key={image.realUnits} className={classes.doubledImage} style={printSizing}>
                         <div className={classnames(classes.singleImageStand, classes.singleImageStandTop)} />
                         <img className={classnames(classes.singleImage, classes.singleImageTop)} src={image.dataUrl} />
                         <img className={classes.singleImage} src={image.dataUrl} />
@@ -106,7 +106,7 @@ const ImageCard : React.FunctionComponent<Props & WithSheet<typeof styles>> = ({
                 )
             }
 
-            return <img className={classes.fullImage} src={image.dataUrl} style={printSizing} />
+            return <img key={image.realUnits} className={classes.fullImage} src={image.dataUrl} style={printSizing} />
         },
         [image, isPrint],
     )
@@ -125,7 +125,7 @@ const ImageCard : React.FunctionComponent<Props & WithSheet<typeof styles>> = ({
 
             return extra
         },
-        [image, isPrint],
+        [renderedImage, image.count],
     )
 
     return (

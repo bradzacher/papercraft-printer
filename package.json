@@ -17,7 +17,9 @@
     "lint": "eslint src typings config scripts --ext=.js,.ts,.tsx",
     "format-no-write": "prettier-eslint src/**/*.{ts,tsx} typings/**/*.{ts,tsx} --eslint-config-path=.eslintrc --eslint-ignore --prettier-ignore --eslint-path=node_modules/eslint --config=.prettierrc",
     "format": "yarn format-no-write --write",
-    "format-check": "yarn format-no-write --list-different"
+    "format-check": "yarn format-no-write --list-different",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.6",
@@ -40,6 +42,7 @@
     "file-loader": "1.1.5",
     "fork-ts-checker-webpack-plugin": "^0.2.8",
     "fs-extra": "3.0.1",
+    "gh-pages": "^2.0.1",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^1.2.0",
     "object-assign": "4.1.1",

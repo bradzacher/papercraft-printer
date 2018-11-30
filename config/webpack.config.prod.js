@@ -52,8 +52,6 @@ module.exports = {
         // Point sourcemap entries to original disk location (format as URL on Windows)
         devtoolModuleFilenameTemplate: info =>
             path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/'),
-        // output as an npm package
-        libraryTarget: 'commonjs',
     },
     resolve: {
         // This allows you to set a fallback for where Webpack should look for modules.

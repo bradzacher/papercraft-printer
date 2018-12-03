@@ -3,13 +3,13 @@ import * as React from 'react'
 import { createStyles, injectSheet, WithSheet } from '~/Theme'
 import { Image, ImagesStore } from '~/stores/Images'
 import ImageOptions from '~/components/ImageOptions'
-import SingleImage from '~/components/imageRenderers/SingleImage'
-import DoubledFace from '~/components/imageRenderers/DoubledFace'
+import FaceAndBack from '~/components/imageRenderers/FaceAndBack'
+import FaceOnly from '~/components/imageRenderers/FaceOnly'
 
-const styles = createStyles(() => ({
+const styles = createStyles(theme => ({
     container: {
         alignItems: 'center',
-        boxShadow: '0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)',
+        boxShadow: theme.shadow.card,
         display: 'flex',
         flexDirection: 'column' as 'column',
         justifyContent: 'stretch',
@@ -38,7 +38,7 @@ interface Props {
 }
 
 const ImageCard : React.FunctionComponent<Props & WithSheet<typeof styles>> = ({ classes, image, store }) => {
-    const renderedImage = image.isSingle ? <SingleImage image={image} /> : <DoubledFace image={image} />
+    const renderedImage = image.isSingle ? <FaceAndBack image={image} /> : <FaceOnly image={image} />
 
     const printRenders = React.useMemo(
         () => {

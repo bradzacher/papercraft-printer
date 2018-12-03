@@ -6,11 +6,12 @@ import { Image, ImagesStore } from '~/stores/Images'
 interface Props {
     image : Image
     label : string
+    min ?: number
     property : keyof Image
     store : ImagesStore
 }
 
-const NumberField : React.FunctionComponent<Props> = ({ image, label, property, store }) => {
+const NumberField : React.FunctionComponent<Props> = ({ image, label, min = 1, property, store }) => {
     const onChange = React.useCallback(
         (el : React.SyntheticEvent<HTMLInputElement>) => {
             const value = parseFloat(el.currentTarget.value)
@@ -21,6 +22,11 @@ const NumberField : React.FunctionComponent<Props> = ({ image, label, property, 
                 return
             }
 
+            if (property === 'group') {
+                store.setGroup(image, value as number)
+
+                return
+            }
             store.setProperty(image, property, value)
         },
         [image, store],
@@ -28,7 +34,7 @@ const NumberField : React.FunctionComponent<Props> = ({ image, label, property, 
 
     return (
         <Field label={label}>
-            <input type='number' onChange={onChange} min={1} value={image[property] as number} />
+            <input type='number' onChange={onChange} min={min} value={image[property] as number} />
         </Field>
     )
 }

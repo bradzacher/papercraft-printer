@@ -22,12 +22,13 @@ const styles = createStyles(theme => ({
 }))
 
 interface Props {
-    addImages : (image : string[]) => void
+    addImages : (image : string[], group : number) => void
     className ?: string
+    group : number
 }
 
 type TImageSelector = React.FunctionComponent<Props & WithSheet<typeof styles>>
-const ImageSelector : TImageSelector = ({ classes, className, addImages }) => {
+const ImageSelector : TImageSelector = ({ addImages, classes, className, group }) => {
     const onFileUpload = async (files : File[]) => {
         if (files.length === 0) {
             return
@@ -47,7 +48,7 @@ const ImageSelector : TImageSelector = ({ classes, className, addImages }) => {
             ),
         )
 
-        addImages(dataUrls)
+        addImages(dataUrls, group)
     }
 
     return (

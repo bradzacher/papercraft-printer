@@ -7,13 +7,18 @@ const styles = createStyles(theme => ({
     fullImage: {
         paddingTop: '1rem',
     },
+    '@media print': {
+        fullImage: {
+            paddingTop: 0,
+        },
+    },
 }))
 
 interface Props {
     image : Image
 }
 
-const SingleImage : React.FunctionComponent<Props & WithSheet<typeof styles>> = ({ classes, image }) => {
+const FaceAndBack : React.FunctionComponent<Props & WithSheet<typeof styles>> = ({ classes, image }) => {
     const printSizing = {
         height: `${image.realHeight}${image.realUnits}`,
         width: `${image.realWidth}${image.realUnits}`,
@@ -22,4 +27,4 @@ const SingleImage : React.FunctionComponent<Props & WithSheet<typeof styles>> = 
     return <img key={image.realUnits} className={classes.fullImage} src={image.dataUrl} style={printSizing} />
 }
 
-export default injectSheet(styles)(SingleImage)
+export default injectSheet(styles)(FaceAndBack)

@@ -35,7 +35,7 @@ interface Props {
     image : Image
 }
 
-const DoubledFace : React.FunctionComponent<Props & WithSheet<typeof styles>> = ({ classes, image }) => {
+const FaceOnly : React.FunctionComponent<Props & WithSheet<typeof styles>> = ({ classes, image }) => {
     const printSizing = {
         height: `${image.realHeight}${image.realUnits}`,
         width: `${image.realWidth}${image.realUnits}`,
@@ -51,4 +51,4 @@ const DoubledFace : React.FunctionComponent<Props & WithSheet<typeof styles>> = 
     )
 }
 
-export default injectSheet(styles)(DoubledFace)
+export default injectSheet(styles)(FaceOnly)

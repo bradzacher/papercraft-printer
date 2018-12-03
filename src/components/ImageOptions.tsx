@@ -3,7 +3,7 @@ import * as React from 'react'
 import CheckboxField from '~/components/imageFields/CheckboxField'
 import NumberField from '~/components/imageFields/NumberField'
 import SelectField from '~/components/imageFields/SelectField'
-import { Image, CreatureSize, ImagesStore, RealUnit } from '~/stores/Images'
+import { Image, ImagesStore, RealUnit } from '~/stores/Images'
 import { createStyles, injectSheet, WithSheet } from '~/Theme'
 
 const styles = createStyles(() => ({
@@ -30,7 +30,7 @@ const ImageOptions : React.FunctionComponent<Props & WithSheet<typeof styles>> =
     <div className={classes.container}>
         <NumberField image={image} label='Count' property='count' store={store} />
         <CheckboxField image={image} label='Has Backing Image?' property='isSingle' store={store} />
-        <SelectField enumObj={CreatureSize} image={image} label='Creature Size' property='creatureSize' store={store} />
+        <NumberField image={image} label='Group' min={0} property='group' store={store} />
         <NumberField image={image} label='Printed Height' property='realHeight' store={store} />
         <NumberField image={image} label='Printed Width' property='realWidth' store={store} />
         <SelectField enumObj={RealUnit} image={image} label='Units' property='realUnits' store={store} />

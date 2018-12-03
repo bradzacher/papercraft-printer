@@ -1,4 +1,6 @@
 import * as React from 'react'
+
+import Field from '~/components/imageFields/Field'
 import { Image, ImagesStore } from '~/stores/Images'
 
 interface Props {
@@ -18,8 +20,7 @@ const SelectField : React.FunctionComponent<Props> = ({ image, enumObj, label, p
     )
 
     return (
-        <label>
-            <span>{label}</span>
+        <Field label={label}>
             <select value={image[property] as string} onChange={onChange}>
                 {Object.keys(enumObj).map(key => (
                     <option value={key} key={key}>
@@ -27,7 +28,7 @@ const SelectField : React.FunctionComponent<Props> = ({ image, enumObj, label, p
                     </option>
                 ))}
             </select>
-        </label>
+        </Field>
     )
 }
 

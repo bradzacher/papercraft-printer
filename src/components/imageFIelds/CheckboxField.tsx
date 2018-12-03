@@ -1,4 +1,6 @@
 import * as React from 'react'
+
+import Field from '~/components/imageFields/Field'
 import { Image, ImagesStore } from '~/stores/Images'
 
 interface Props {
@@ -17,10 +19,9 @@ const CheckboxField : React.FunctionComponent<Props> = ({ image, label, property
     )
 
     return (
-        <label>
+        <Field label={label}>
             <input type='checkbox' onChange={onChange} checked={image[property] as boolean} />
-            <span>{label}</span>
-        </label>
+        </Field>
     )
 }
 

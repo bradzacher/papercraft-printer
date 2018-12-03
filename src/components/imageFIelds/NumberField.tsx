@@ -1,4 +1,6 @@
 import * as React from 'react'
+
+import Field from '~/components/imageFields/Field'
 import { Image, ImagesStore } from '~/stores/Images'
 
 interface Props {
@@ -25,10 +27,9 @@ const NumberField : React.FunctionComponent<Props> = ({ image, label, property, 
     )
 
     return (
-        <label>
-            <span>{label}</span>
+        <Field label={label}>
             <input type='number' onChange={onChange} min={1} value={image[property] as number} />
-        </label>
+        </Field>
     )
 }
 

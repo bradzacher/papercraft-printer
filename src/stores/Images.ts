@@ -30,8 +30,18 @@ interface ImagesStore {
     setProperty : <T extends keyof Image>(image : Image, key : T, value : Image[T]) => void
 }
 
+const imagesFromStorage : ImagesState = JSON.parse(window.localStorage.getItem('images') || '[]')
+
 const useImagesStore = () : ImagesStore => {
-    const [images, setImages] = React.useState<ImagesState>([])
+    const [images, setImages] = React.useState<ImagesState>(imagesFromStorage)
+    const setImagesWithStorage = React.useCallback(
+        (newImages) => {
+            window.localStorage.setItem('images', JSON.stringify(newImages))
+
+            return setImages(newImages)
+        },
+        [setImages],
+    )
 
     function setProperty<T extends keyof Image>(image : Image, key : T, value : Image[T]) {
         const idx = images.indexOf(image)
@@ -41,7 +51,7 @@ const useImagesStore = () : ImagesStore => {
                 ...image,
                 [key]: value,
             }
-            setImages(newImages)
+            setImagesWithStorage(newImages)
         }
     }
 
@@ -50,12 +60,12 @@ const useImagesStore = () : ImagesStore => {
         addImages: (dataUrls : string[]) : void => {
             const newImages = dataUrls.filter(dataUrl => !images.find(i => i.dataUrl === dataUrl))
             if (newImages.length > 0) {
-                setImages([
+                setImagesWithStorage([
                     ...images,
                     ...newImages.map(dataUrl => ({
                         dataUrl,
                         count: 1,
-                        isSingle: false,
+                        isSingle: true,
                         creatureSize: CreatureSize.Medium,
                         realWidth: 1,
                         realHeight: 3,
@@ -67,7 +77,7 @@ const useImagesStore = () : ImagesStore => {
         removeImage: (image : Image) : void => {
             const idx = images.indexOf(image)
             if (idx !== -1) {
-                setImages(images.filter((_, i) => i !== idx))
+                setImagesWithStorage(images.filter((_, i) => i !== idx))
             }
         },
         setProperty,

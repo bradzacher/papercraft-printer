@@ -43,10 +43,6 @@ const Group : React.FunctionComponent<Props & WithSheet<typeof styles>> = ({ cla
         [store.images],
     )
 
-    if (images.length === 0) {
-        return null
-    }
-
     return (
         <div className={classes.container}>
             <GroupHeader addImages={store.addImages} group={index} />

@@ -9,10 +9,21 @@ const styles = createStyles(theme => ({
         backgroundColor: theme.palette.secondary,
         color: theme.palette.white,
         cursor: 'pointer',
-        height: '4rem',
-        lineHeight: '2rem',
+        display: 'flex',
+        flexDirection: 'column' as 'column',
         padding: '1rem',
         textAlign: 'center' as 'center',
+    },
+    heading: {
+        fontSize: '120%',
+        fontWeight: 'bold' as 'bold',
+        padding: '1rem',
+    },
+    row: {
+        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'row' as 'row',
+        justifyContent: 'space-between',
     },
     '@media print': {
         dropzone: {
@@ -27,8 +38,12 @@ interface Props {
     group : number
 }
 
-type TImageSelector = React.FunctionComponent<Props & WithSheet<typeof styles>>
-const ImageSelector : TImageSelector = ({ addImages, classes, className, group }) => {
+const ImageSelector : React.FunctionComponent<Props & WithSheet<typeof styles>> = ({
+    addImages,
+    classes,
+    className,
+    group,
+}) => {
     const onFileUpload = async (files : File[]) => {
         if (files.length === 0) {
             return
@@ -58,7 +73,10 @@ const ImageSelector : TImageSelector = ({ addImages, classes, className, group }
             onDropAccepted={onFileUpload}
             multiple
         >
-            Click to add images (or drop them here)...
+            <div className={classes.row}>
+                <div className={classes.heading}>Group {group}</div>
+                <div>Click to add images (or drop them here)...</div>
+            </div>
         </Dropzone>
     )
 }

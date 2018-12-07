@@ -1,10 +1,9 @@
 import * as React from 'react'
 
-import ImageSelector from '~/components/ImageSelector'
+import GroupHeader from '~/components/group/GroupHeader'
 import { ImagesStore, Image } from '~/stores/Images'
 import { createStyles, injectSheet, WithSheet } from '~/Theme'
 
-import GroupHeading from './GroupHeading'
 import ImageCard from '~/components/ImageCard'
 
 const styles = createStyles(() => ({
@@ -50,8 +49,7 @@ const Group : React.FunctionComponent<Props & WithSheet<typeof styles>> = ({ cla
 
     return (
         <div className={classes.container}>
-            <GroupHeading index={index} />
-            <ImageSelector addImages={store.addImages} group={index} />
+            <GroupHeader addImages={store.addImages} group={index} />
             <div className={classes.images}>
                 {images.map((img, i) => (
                     <ImageCard image={img} store={store} key={i} />
